@@ -293,7 +293,7 @@ const projects = [
   {
     id: 5,
     title: 'STENOX',
-    description: Lo que perdura. Bloques monolíticos que no siguen tendencias.',
+    description: 'Lo que perdura. Bloques monolíticos que no siguen tendencias.',
     img: 'https://images.unsplash.com/photo-1588615419958-8121f151ce1e?q=80&w=2070&auto=format&fit=crop',
   },
   {

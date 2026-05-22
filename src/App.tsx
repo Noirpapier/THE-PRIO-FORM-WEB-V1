@@ -274,9 +274,9 @@ const projects = [
   },
   {
     id: 2,
-    title: 'CRITERIO APLICADO',
-    description: 'Medición exacta. El encastre perfecto entre estrategia y ejecución.',
-    img: 'https://images.unsplash.com/photo-1534224039826-c7a0eda0e6b3?q=80&w=2070&auto=format&fit=crop',
+    title: 'PUNCH',
+    description: 'Desarrollo de branding y packaging. Un golpe de energía y diseño contemporáneo.',
+    img: '/PUNCH_PORTADA.jpg',
   },
   {
     id: 3,
@@ -387,6 +387,15 @@ function ProjectBreakdown({ project, onClose }: { project: any, onClose: () => v
               loading="lazy"
             />
           ))}
+        </div>
+      ) : project.title === 'PUNCH' ? (
+        <div className="w-full flex flex-col min-h-screen bg-black">
+          <img
+            src="/PUNCH_PORTADA.jpg"
+            className="w-full h-auto block select-none"
+            alt="PUNCH Cover"
+            onDragStart={(e) => e.preventDefault()}
+          />
         </div>
       ) : (
         <>

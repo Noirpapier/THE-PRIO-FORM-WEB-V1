@@ -128,6 +128,8 @@ const cases = {
       "/casos/brutta/BRUTTA_TPF-01.jpg",
       "/casos/brutta/BRUTTA_TPF-02.jpg",
       "/casos/brutta/BRUTTA_TPF-03.jpg",
+      "/casos/brutta/BRUTTA_TPF-16.jpg",
+      "/casos/brutta/BRUTTA_TPF-17.jpg",
       "/casos/brutta/BRUTTA_TPF-04.jpg",
       "/casos/brutta/BRUTTA_TPF-05.jpg",
       "/casos/brutta/BRUTTA_TPF-06.jpg",
@@ -140,8 +142,6 @@ const cases = {
       "/casos/brutta/BRUTTA_TPF-13.jpg",
       "/casos/brutta/BRUTTA_TPF-14.jpg",
       "/casos/brutta/BRUTTA_TPF-15.jpg",
-      "/casos/brutta/BRUTTA_TPF-16.jpg",
-      "/casos/brutta/BRUTTA_TPF-17.jpg",
     ],
   },
 };

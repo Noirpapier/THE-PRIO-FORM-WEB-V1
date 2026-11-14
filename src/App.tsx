@@ -276,7 +276,7 @@ const projects = [
     id: 2,
     title: 'PUNCH',
     description: 'Desarrollo de branding y packaging. Un golpe de energía y diseño contemporáneo.',
-    img: '/PUNCH_PORTADA.jpg',
+    img: '/casos/punch/PUNCH_TPF-01.jpg',
   },
   {
     id: 3,
@@ -351,6 +351,23 @@ function ProjectBreakdown({ project, onClose }: { project: any, onClose: () => v
     '/STENOX_WEB-14.jpg',
   ];
 
+  const punchImages = [
+    '/casos/punch/PUNCH_TPF-01.jpg',
+    '/casos/punch/PUNCH_TPF-02.jpg',
+    '/casos/punch/PUNCH_TPF-03.jpg',
+    '/casos/punch/PUNCH_TPF-04.jpg',
+    '/casos/punch/PUNCH_TPF-05.jpg',
+    '/casos/punch/PUNCH_TPF-06.jpg',
+    '/casos/punch/PUNCH_TPF-07.jpg',
+    '/casos/punch/PUNCH_TPF-08.jpg',
+    '/casos/punch/PUNCH_TPF-09.jpg',
+    '/casos/punch/PUNCH_TPF-10.jpg',
+    '/casos/punch/PUNCH_TPF-11.jpg',
+    '/casos/punch/PUNCH_TPF-12.jpg',
+    '/casos/punch/PUNCH_TPF-13.jpg',
+    '/casos/punch/PUNCH_TPF-14.jpg',
+  ];
+
   return (
     <motion.div
       ref={containerRef}
@@ -390,12 +407,16 @@ function ProjectBreakdown({ project, onClose }: { project: any, onClose: () => v
         </div>
       ) : project.title === 'PUNCH' ? (
         <div className="w-full flex flex-col min-h-screen bg-black">
-          <img
-            src="/PUNCH_PORTADA.jpg"
-            className="w-full h-auto block select-none"
-            alt="PUNCH Cover"
-            onDragStart={(e) => e.preventDefault()}
-          />
+          {punchImages.map((src, index) => (
+            <img
+              key={src}
+              src={src}
+              className="w-full h-auto block select-none"
+              alt={`PUNCH Detail ${index + 1}`}
+              onDragStart={(e) => e.preventDefault()}
+              loading={index === 0 ? 'eager' : 'lazy'}
+            />
+          ))}
         </div>
       ) : (
         <>
@@ -556,8 +577,7 @@ export default function App() {
   useEffect(() => {
     const t1 = setTimeout(() => setIntroPhase(1), 800); // Show dots
     const t2 = setTimeout(() => setIntroPhase(2), 1600); // Show rotating text
-    const t3 = setTimeout(() => setIntroPhase(3), 2400); // Show rest of page
-    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
+    return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
   return (
@@ -567,22 +587,20 @@ export default function App() {
       <main>
         <Hero introPhase={introPhase} hidden={!!selectedProject} />
 
-        {introPhase >= 3 && (
-          <motion.div
-            initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <PrioGallery
-              selectedProject={selectedProject}
-              onProjectSelect={(p) => setSelectedProject(p)}
-            />
-            <About />
-            <Services />
-            <Contact />
-            <Footer />
-          </motion.div>
-        )}
+        <motion.div
+          initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <PrioGallery
+            selectedProject={selectedProject}
+            onProjectSelect={(p) => setSelectedProject(p)}
+          />
+          <About />
+          <Services />
+          <Contact />
+          <Footer />
+        </motion.div>
       </main>
 
       <AnimatePresence>

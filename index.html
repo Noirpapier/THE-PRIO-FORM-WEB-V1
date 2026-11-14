@@ -3,11 +3,177 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Prio Form | Creative Studio</title>
+    <title>The Prio Form</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="/V2/styles.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <header class="site-header" data-header>
+      <div class="hero-kicker nav-claim">
+        <span>THE WAY TO</span>
+        <span class="claim-second-line">MAKE THINGS</span>
+        <span class="rotating-word" data-rotating-word>REAL</span>
+      </div>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#cases">Work</a>
+        <a href="#profile">Profile</a>
+        <a href="#method">Method</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-label="The Prio Form introduction">
+        <div class="hero-glow" aria-hidden="true"></div>
+        <h1 class="hero-mark">
+          <span>THE</span>
+          <span>PRIO</span>
+          <span>FORM</span>
+        </h1>
+        <div class="hero-grid">
+          <p class="hero-thesis">
+            WE TURN PURE AMBITION INTO A SYSTEM THAT CAN BE SEEN, USED AND REMEMBERED.
+          </p>
+        </div>
+      </section>
+
+      <section id="cases" class="cases" aria-label="Work">
+        <div class="section-heading">
+          <p>Work</p>
+        </div>
+
+        <article class="case-row" data-case-trigger="objet">
+          <div class="case-image">
+            <img src="/casos/objet/PORTADA.jpg" alt="OBJET case cover" />
+          </div>
+        </article>
+
+        <article class="case-row case-row-alt" data-case-trigger="stenox">
+          <div class="case-image">
+            <img src="/STENOX_PORTADA_CROP.jpg" alt="STENOX case cover" />
+          </div>
+        </article>
+
+        <article class="case-row" data-case-trigger="perrinos">
+          <div class="case-image">
+            <img src="/casos/perrinos/PERRINOS_TPF-01.jpg" alt="PERRINOS case cover" />
+          </div>
+        </article>
+
+        <article class="case-row case-row-alt" data-case-trigger="vasca">
+          <div class="case-image">
+            <img src="/casos/vasca/VASCA_TPF-01.jpg" alt="VASCA case cover" />
+          </div>
+        </article>
+
+        <article class="case-row" data-case-trigger="punch">
+          <div class="case-image">
+            <img src="/casos/punch/PUNCH_TPF-01.jpg" alt="PUNCH case cover" />
+          </div>
+        </article>
+
+        <article class="case-row case-row-alt" data-case-trigger="brutta">
+          <div class="case-image">
+            <img src="/casos/brutta/BRUTTA_TPF-17.jpg" alt="BRUTTA case cover" />
+          </div>
+        </article>
+      </section>
+
+      <section id="profile" class="profile" aria-label="Studio profile">
+        <div class="profile-text">
+          <p class="section-label">Profile</p>
+          <h2>
+            <span class="profile-regular">
+              Prio is led by Franco Donofrio with one working belief:
+            </span>
+            <span class="profile-bold">
+              a brand should become easier to use the more ambitious it gets.
+            </span>
+          </h2>
+        </div>
+        <div class="portrait-pair">
+          <img src="/FRAN.png" alt="Franco Donofrio" />
+        </div>
+      </section>
+
+      <section id="method" class="method" aria-label="Studio method">
+        <div class="section-heading">
+          <p>Method</p>
+          <h2>MAKE THE IDEA REAL</h2>
+        </div>
+        <div class="method-grid">
+          <div>
+            <span>01</span>
+            <h3>Find the pressure</h3>
+            <p>We define the tension the brand has to own before we design around it.</p>
+          </div>
+          <div>
+            <span>02</span>
+            <h3>Build the form</h3>
+            <p>Logo, type, color, image, motion, and language become one usable system.</p>
+          </div>
+          <div>
+            <span>03</span>
+            <h3>Make it travel</h3>
+            <p>The work is stress-tested across packaging, social, web, print, and pitch moments.</p>
+          </div>
+        </div>
+        <div class="method-services" aria-label="Services">
+          <span>Strategy</span>
+          <span>Identity</span>
+          <span>Packaging</span>
+          <span>Web</span>
+        </div>
+      </section>
+
+      <section id="contact" class="contact" aria-label="Contact">
+        <div class="contact-image">
+          <img
+            src="/contact-prio-form.png"
+            alt="The Prio Form project preview"
+          />
+        </div>
+        <div class="contact-copy">
+          <h2>Bring the raw version. We will help give it form.</h2>
+          <a href="mailto:theprioform@gmail.com">theprioform@gmail.com</a>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="site-footer-inner">
+          <div>
+            <h2>THE PRIO FORM</h2>
+          </div>
+          <div class="site-footer-grid">
+            <div>
+              <p>General Inquiries</p>
+              <a href="mailto:theprioform@gmail.com">theprioform@gmail.com</a>
+            </div>
+            <div>
+              <p>Follow</p>
+              <div class="footer-links">
+                <a href="https://www.instagram.com/theprioform/?hl=es" target="_blank" rel="noreferrer">Instagram</a>
+                <a href="https://www.linkedin.com/company/weareprio/?lipi=urn%3Ali%3Apage%3Ad_flagship3_feed%3B59vkTEJDRz21MgKChazlsg%3D%3D" target="_blank" rel="noreferrer">LinkedIn</a>
+              </div>
+            </div>
+            <div class="footer-rights">
+              <p>THE PRIO FORM 2026, All Rights Reserved</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <aside class="case-modal" aria-hidden="true" data-case-modal>
+      <div class="case-modal-bar">
+        <p data-case-title>Case</p>
+        <button type="button" data-case-close>Close</button>
+      </div>
+      <div class="case-modal-track" data-case-track></div>
+    </aside>
+
+    <script type="module" src="/V2/app.js"></script>
   </body>
 </html>
-

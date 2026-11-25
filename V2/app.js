@@ -1,3 +1,5 @@
+import { trackPageView } from "./analytics.js";
+
 const header = document.querySelector("[data-header]");
 const modal = document.querySelector("[data-case-modal]");
 const track = document.querySelector("[data-case-track]");
@@ -7,12 +9,22 @@ const rotatingWord = document.querySelector("[data-rotating-word]");
 const rotatingWords = ["REAL", "HAPPEN", "BETTER", "LAST", "MATTER", "UNIQUE"];
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+const siteSeo = {
+  title: "The Prio Form | Branding, Visual Identity, Packaging & Web Design",
+  description:
+    "The Prio Form is an independent branding studio creating brand strategy, visual identity, packaging and web design for ambitious businesses.",
+  image: "/contact-prio-form.png",
+};
+
 document.documentElement.classList.add("motion-ready");
 
 const cases = {
   objet: {
     title: "OBJET",
     cover: "/casos/objet/PORTADA.jpg",
+    seoTitle: "OBJET Brand Identity & E-commerce Case Study | The Prio Form",
+    seoDescription:
+      "Brand strategy, visual identity and e-commerce design for OBJET, a contemporary interior design destination.",
     images: [
       "/casos/objet/OBJET_TPF-01.jpg",
       "/casos/objet/OBJET_TPF-02.jpg",
@@ -37,6 +49,9 @@ const cases = {
   stenox: {
     title: "STENOX",
     cover: "/STENOX_PORTADA_CROP.jpg",
+    seoTitle: "STENOX Fintech Branding Case Study | The Prio Form",
+    seoDescription:
+      "Brand strategy, visual identity and digital direction for STENOX, a modern investment platform.",
     images: [
       "/STENOX_WEB-01.jpg",
       "/STENOX_WEB-02.jpg",
@@ -57,6 +72,9 @@ const cases = {
   vasca: {
     title: "VASCA",
     cover: "/casos/vasca/VASCA_TPF-01.jpg",
+    seoTitle: "VASCA Food Branding & Packaging Case Study | The Prio Form",
+    seoDescription:
+      "Brand strategy, visual identity and packaging design for VASCA, a contemporary Basque cheesecake brand.",
     images: [
       "/casos/vasca/VASCA_TPF-01.jpg",
       "/casos/vasca/VASCA_TPF-02.jpg",
@@ -81,6 +99,9 @@ const cases = {
   punch: {
     title: "PUNCH",
     cover: "/casos/punch/PUNCH_TPF-01.jpg",
+    seoTitle: "PUNCH Cold Brew Branding & Packaging Case Study | The Prio Form",
+    seoDescription:
+      "Brand strategy, visual identity and packaging design for PUNCH, a bold cold brew coffee brand.",
     images: [
       "/casos/punch/PUNCH_TPF-01.jpg",
       "/casos/punch/PUNCH_TPF-02.jpg",
@@ -101,6 +122,9 @@ const cases = {
   perrinos: {
     title: "PERRINOS",
     cover: "/casos/perrinos/PERRINOS_TPF-01.jpg",
+    seoTitle: "PERRINOS Hospitality Branding Case Study | The Prio Form",
+    seoDescription:
+      "Brand strategy, visual identity and experience design for PERRINOS, a hotel and spa for dogs.",
     images: [
       "/casos/perrinos/PERRINOS_TPF-01.jpg",
       "/casos/perrinos/PERRINOS_TPF-02.jpg",
@@ -124,6 +148,9 @@ const cases = {
   brutta: {
     title: "BRUTTA",
     cover: "/casos/brutta/BRUTTA_TPF-17.jpg",
+    seoTitle: "BRUTTA Food Branding Case Study | The Prio Form",
+    seoDescription:
+      "Naming, brand strategy and visual identity for BRUTTA, a focaccia sandwich concept with a bold point of view.",
     images: [
       "/casos/brutta/BRUTTA_TPF-01.jpg",
       "/casos/brutta/BRUTTA_TPF-02.jpg",
@@ -147,6 +174,39 @@ const cases = {
 };
 
 const caseOrder = ["objet", "stenox", "perrinos", "vasca", "punch", "brutta"];
+
+function setMetaContent(selector, content) {
+  const meta = document.querySelector(selector);
+  if (meta) meta.setAttribute("content", content);
+}
+
+function updateSeo(caseId = null) {
+  const item = caseId ? cases[caseId] : null;
+  const url = new URL("https://www.weareprio.com/");
+
+  if (caseId) {
+    url.searchParams.set("case", caseId);
+  }
+
+  const pageTitle = item?.seoTitle || siteSeo.title;
+  const pageDescription = item?.seoDescription || siteSeo.description;
+  const pageImage = new URL(item?.cover || siteSeo.image, url.origin).href;
+  const pageUrl = url.href;
+
+  document.title = pageTitle;
+  document.querySelector('link[rel="canonical"]')?.setAttribute("href", pageUrl);
+  setMetaContent('meta[name="description"]', pageDescription);
+  setMetaContent('meta[property="og:title"]', pageTitle);
+  setMetaContent('meta[property="og:description"]', pageDescription);
+  setMetaContent('meta[property="og:url"]', pageUrl);
+  setMetaContent('meta[property="og:image"]', pageImage);
+  setMetaContent('meta[property="og:image:alt"]', item ? `${item.title} case study` : "The Prio Form branding studio");
+  setMetaContent('meta[name="twitter:title"]', pageTitle);
+  setMetaContent('meta[name="twitter:description"]', pageDescription);
+  setMetaContent('meta[name="twitter:image"]', pageImage);
+
+  trackPageView(`${window.location.pathname}${window.location.search}`, pageTitle);
+}
 
 function createCaseImage(src, alt, loading = "lazy") {
   const image = document.createElement("img");
@@ -199,11 +259,15 @@ function createOtherProjects(currentCaseId) {
   grid.className = "other-projects-grid";
 
   otherCases.forEach(([caseId, item]) => {
-    const button = document.createElement("button");
+    const button = document.createElement("a");
     button.className = "other-project-card";
-    button.type = "button";
+    button.href = getCaseUrl(caseId);
     button.setAttribute("aria-label", `Open ${item.title}`);
-    button.addEventListener("click", () => openCase(caseId));
+    button.addEventListener("click", (event) => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      openCase(caseId);
+    });
 
     const image = createCaseImage(item.cover, `${item.title} case cover`);
 
@@ -425,6 +489,8 @@ function openCase(caseId, updateUrl = true) {
     setCaseUrl(caseId);
   }
 
+  updateSeo(caseId);
+
   title.textContent = item.title;
   const detailMedia = item.images.map((media, index) =>
     createCaseMedia(media, `${item.title} detail ${index + 1}`, index === 0 ? "eager" : "lazy"),
@@ -446,10 +512,15 @@ function closeCase() {
   document.body.classList.remove("modal-open");
   track.replaceChildren();
   clearCaseUrl();
+  updateSeo();
 }
 
 document.querySelectorAll("[data-case-trigger]").forEach((trigger) => {
-  trigger.addEventListener("click", () => openCase(trigger.dataset.caseTrigger));
+  trigger.addEventListener("click", (event) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    openCase(trigger.dataset.caseTrigger);
+  });
 });
 
 closeButton.addEventListener("click", closeCase);
@@ -466,6 +537,7 @@ window.addEventListener("popstate", () => {
   modal.setAttribute("aria-hidden", "true");
   document.body.classList.remove("modal-open");
   track.replaceChildren();
+  updateSeo();
 });
 
 window.addEventListener("keydown", (event) => {
@@ -483,6 +555,8 @@ setupCustomCursor();
 const initialCaseId = getCurrentCaseId();
 if (initialCaseId) {
   openCase(initialCaseId, false);
+} else {
+  updateSeo();
 }
 
 if (rotatingWord && !prefersReducedMotion.matches) {

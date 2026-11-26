@@ -656,6 +656,19 @@ img {
   background: var(--deep);
 }
 
+.case-media-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  background: var(--deep);
+}
+
+.case-modal-track .case-media-pair img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .other-projects {
   padding: clamp(42px, 7vw, 104px) clamp(12px, 2.5vw, 40px) clamp(48px, 8vw, 120px);
   background: var(--bg);
@@ -753,6 +766,15 @@ img {
 
   .other-project-card img {
     aspect-ratio: auto;
+    object-fit: contain;
+  }
+
+  .case-media-pair {
+    grid-template-columns: 1fr;
+  }
+
+  .case-modal-track .case-media-pair img {
+    height: auto;
     object-fit: contain;
   }
 

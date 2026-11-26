@@ -171,9 +171,37 @@ const cases = {
       "/casos/brutta/BRUTTA_TPF-15.jpg",
     ],
   },
+  agba: {
+    title: "AGBA",
+    cover: "/casos/agba/PORTADA.jpg",
+    seoTitle: "AGBA Brand Identity Case Study | The Prio Form",
+    seoDescription:
+      "Brand strategy, visual identity and campaign design for AGBA.",
+    images: [
+      "/casos/agba/AGBA_TPF-01.jpg",
+      "/casos/agba/AGBA_TPF-02.jpg",
+      "/casos/agba/AGBA_TPF-03.jpg",
+      "/casos/agba/2.gif",
+      {
+        type: "pair",
+        items: ["/casos/agba/AGBA_TPF-04.jpg", "/casos/agba/1.gif"],
+      },
+      "/casos/agba/AGBA_TPF-06.jpg",
+      "/casos/agba/AGBA_TPF-07.jpg",
+      "/casos/agba/AGBA_TPF-08.jpg",
+      "/casos/agba/AGBA_TPF-09.jpg",
+      "/casos/agba/AGBA_TPF-10.jpg",
+      "/casos/agba/AGBA_TPF-11.jpg",
+      "/casos/agba/AGBA_TPF-12.jpg",
+      "/casos/agba/AGBA_TPF-13.jpg",
+      "/casos/agba/AGBA_TPF-14.jpg",
+      "/casos/agba/AGBA_TPF-15.jpg",
+      "/casos/agba/AGBA_TPF-16.jpg",
+    ],
+  },
 };
 
-const caseOrder = ["objet", "stenox", "perrinos", "vasca", "punch", "brutta"];
+const caseOrder = ["agba", "objet", "stenox", "perrinos", "vasca", "punch", "brutta"];
 
 function setMetaContent(selector, content) {
   const meta = document.querySelector(selector);
@@ -238,6 +266,17 @@ function createCaseVideo(src, alt) {
 function createCaseMedia(media, alt, loading = "lazy") {
   if (typeof media === "string") {
     return createCaseImage(media, alt, loading);
+  }
+
+  if (media.type === "pair") {
+    const pair = document.createElement("div");
+    pair.className = "case-media-pair";
+
+    media.items.forEach((item, index) => {
+      pair.append(createCaseImage(item, `${alt} ${index + 1}`, loading));
+    });
+
+    return pair;
   }
 
   return createCaseVideo(media.src, alt);
